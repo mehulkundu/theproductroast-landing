@@ -1,0 +1,47 @@
+
+---
+import { ThemeToggle } from "./theme-toggle";
+import { Picture } from "astro:assets";
+---
+
+<header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container h-14 mx-auto px-8 py-auto">
+    <div class="max-w-[1000px] mx-auto">
+    <div class="md:mx-12 xl:mx-24 mx-auto flex items-center justify-between py-2">
+      <div class="mr-4 flex">
+        <a href="/" class="mr-6 flex items-center space-x-2">
+          <Picture
+            formats={['avif', 'webp']}
+            fallbackFormat='png'
+            width="20"
+            height="20"
+            src="/favicon.svg"
+            alt="Nephophile Studio Logo"
+            height="20"
+            width="20"
+          />
+          <span class="font-bold">Astro app</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2 justify-end">
+        <nav class="flex items-center space-x-6">
+          <a
+            href="/#products"
+            class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Products
+          </a>
+          <a
+            href="/#policies"
+            class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Policies
+          </a>
+        </nav>
+        <ThemeToggle client:load/>
+      </div>
+    </div>
+      </div>
+  </div>
+</header>
