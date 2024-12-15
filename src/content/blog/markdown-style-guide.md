@@ -5,7 +5,7 @@ pubDate: "Jun 19 2024"
 heroImage: "/blog-placeholder-1.jpg"
 ---
 
-Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
+**Here is a sample of some basic** Markdown syntax that can be used when writing Markdown content in Astro.
 
 <p class='lead'>This is a lead text</p>
 
