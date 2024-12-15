@@ -1,0 +1,50 @@
+---
+import type { Feature } from "@/types";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  features: Feature[];
+}
+
+const {
+  title = "More features",
+  subtitle = "Our platform provides all the tools and features you need",
+  description = "Everything you need to create amazing applications",
+  features,
+} = Astro.props;
+---
+
+<section class='py-16'>
+  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
+    <div class='mx-auto max-w-2xl text-center'>
+      <p class='text-2xl font-cursive'>{title}</p>
+      <h2 class='font-bold font-serif tracking-tight'>
+        {subtitle}
+      </h2>
+      <p class='mt-6 leading-8 text-muted-foreground'>
+        {description}
+      </p>
+    </div>
+    <div class='mx-auto mt-16 max-w-5xl sm:mt-20'>
+      <div class='grid grid-cols-1 gap-8 sm:grid-cols-2'>
+        {
+          features.map((feature) => (
+            <div class='flex gap-4'>
+              <div class='p-1 border bg-card rounded-lg shadow-sm hover:shadow-md'>
+                <div class='aspect-video h-32 bg-card rounded-md border p-6 shadow-sm'>
+                  <feature.icon className='h-8 w-8' />
+                </div>
+              </div>
+              <div class='flex flex-col'>
+                <h5 class='font-semibold font-serif'>{feature.name}</h5>
+                <p class='mt-4 text-muted-foreground'>{feature.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,113 +1,127 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Button } from "@/components/ui/button";
-import { MoveRight, Sparkles, Zap, Shield, Rocket } from "lucide-react";
+import {
+  ArrowRight,
+  ChartLine,
+  Sparkle,
+  Lightning,
+  Shield,
+  Rocket,
+} from "@phosphor-icons/react";
+import { Picture } from "astro:assets";
+import Hero from "@/components/sections/hero.astro";
+import Stats from "@/components/sections/stats.astro";
+import Footer from "@/components/sections/footer.astro";
+import Steps from "@/components/sections/steps.astro";
+import Features from "@/components/sections/features.astro";
+import FeaturesBento from "@/components/sections/features-bento.astro";
+import FeaturesMore from "@/components/sections/features-more.astro";
+import FooterCTA from "@/components/sections/footer-cta.astro";
+
+const features = [
+  {
+    name: "Integrations",
+    description: "Connect your account to your favorite platforms",
+    icon: ArrowRight,
+  },
+];
+
+const more_features = [
+  {
+    name: "Integrations",
+    description:
+      "Connect your Stweet account to your favorite platforms, like Shopify, WooCommerce, and Slack.",
+    icon: ArrowRight,
+  },
+  {
+    name: "Analytics",
+    description:
+      "Get real-time analytics on your Stweet account, including sentiment, engagement, and more.",
+    icon: ChartLine,
+  },
+];
+
+const stats = [
+  {
+    label: "Transactions every 24 hours",
+    value: "44 million",
+  },
+  {
+    label: "Transactions every 24 hours",
+    value: "44 million",
+  },
+  {
+    label: "Transactions every 24 hours",
+    value: "44 million",
+  },
+];
+
+const testimonials = [
+  {
+    name: "John Doe",
+    quote: "Great product!",
+    avatar: "/path/to/avatar.jpg",
+  },
+];
+
+const steps = [
+  {
+    name: "Sign Up",
+    description: "Create your account in seconds",
+    icon: Sparkle,
+  },
+  {
+    name: "Configure",
+    description: "Set up your preferences and integrations",
+    icon: Lightning,
+  },
+  {
+    name: "Deploy",
+    description: "Launch your application with confidence",
+    icon: Rocket,
+  },
+];
 ---
 
-<Layout title='Modern SaaS Platform'>
+<Layout title='Modern SaaS Platform' description='dfsdfdsf'>
   <main class='min-h-screen'>
     <!-- Hero Section -->
-    <section class='relative px-6 lg:px-8 py-24 lg:py-32 overflow-hidden'>
-      <div class='mx-auto max-w-7xl'>
-        <div class='text-center'>
-          <h1 class='font-bold tracking-tight text-foreground'>
-            Build faster with our
-            <span class='block'>modern platform</span>
-          </h1>
-          <p
-            class='mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto'>
-            Empower your development workflow with our cutting-edge tools and
-            seamless integration capabilities.
-          </p>
-          <div class='mt-10 flex items-center justify-center gap-x-6'>
-            <Button size='lg' className='group'>
-              Get started
-              <MoveRight
-                className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform'
-              />
-            </Button>
-            <Button variant='outline' size='lg'> Learn more </Button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Hero
+      title='Social proofs made easy'
+      description='The easiest way to gather social proof'
+      testimonials={testimonials}
+    />
+
+    <!-- Stats Section -->
+    <Stats stats={stats} />
+
+    <!-- Steps Section -->
+    <Steps steps={steps} />
 
     <!-- Features Section -->
-    <section class='py-24 bg-muted'>
-      <div class='mx-auto max-w-7xl px-6 lg:px-8'>
-        <div class='mx-auto max-w-2xl text-center'>
-          <h2 class='text-3xl font-bold tracking-tight sm:text-4xl'>
-            Everything you need to build
-          </h2>
-          <p class='mt-6 text-lg leading-8 text-muted-foreground'>
-            Our platform provides all the tools and features you need to create
-            amazing applications.
-          </p>
-        </div>
+    <Features title='Our Features' features={features} />
 
-        <div class='mx-auto mt-16 max-w-5xl sm:mt-20'>
-          <div class='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            <!-- Feature 1 -->
-            <div
-              class='relative p-8 bg-card rounded-3xl shadow-sm ring-1 ring-ring hover:ring-ring/80 transition-all'>
-              <div class='flex items-center gap-x-4'>
-                <Sparkles className='h-8 w-8' />
-                <h3 class='text-lg font-semibold'>Smart Features</h3>
-              </div>
-              <p class='mt-4 text-muted-foreground'>
-                Advanced capabilities that adapt to your needs and grow with
-                your projects.
-              </p>
-            </div>
+    <!-- Bento Features Section -->
+    <FeaturesBento />
 
-            <!-- Feature 2 -->
-            <div
-              class='relative p-8 bg-card rounded-3xl shadow-sm ring-1 ring-ring hover:ring-ring/80 transition-all'>
-              <div class='flex items-center gap-x-4'>
-                <Zap className='h-8 w-8' />
-                <h3 class='text-lg font-semibold'>Lightning Fast</h3>
-              </div>
-              <p class='mt-4 text-muted-foreground'>
-                Optimized performance ensures your applications run at peak
-                efficiency.
-              </p>
-            </div>
-
-            <!-- Feature 3 -->
-            <div
-              class='relative p-8 bg-card rounded-3xl shadow-sm ring-1 ring-ring hover:ring-ring/80 transition-all'>
-              <div class='flex items-center gap-x-4'>
-                <Shield className='h-8 w-8' />
-                <h3 class='text-lg font-semibold'>Enterprise Security</h3>
-              </div>
-              <p class='mt-4 text-muted-foreground'>
-                Built-in security features protect your data and user privacy.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- More Features Section -->
+    <FeaturesMore
+      title='Advanced Features'
+      subtitle='Powerful tools for your workflow'
+      description='Discover our advanced features that help you build better applications.'
+      features={more_features}
+    />
 
     <!-- CTA Section -->
-    <section class='relative isolate py-24 px-6 lg:px-8'>
-      <div class='mx-auto max-w-2xl text-center'>
-        <h2 class='text-3xl font-bold tracking-tight sm:text-4xl'>
-          Ready to get started?
-        </h2>
-        <p class='mt-6 text-lg leading-8 -muted-foreground'>
-          Join thousands of developers who are already building the future with
-          our platform.
-        </p>
-        <div class='mt-10 flex items-center justify-center gap-x-6'>
-          <Button size='lg' className='group'>
-            Launch your project
-            <Rocket
-              className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform'
-            />
-          </Button>
-        </div>
-      </div>
-    </section>
+    <FooterCTA
+      title='Start your journey today'
+      description='Join our community of innovators and build something amazing'
+      buttonText='Get Started'
+      buttonIcon={ArrowRight}
+    />
+
+    <!-- Footer -->
+    <Footer />
   </main>
 </Layout>

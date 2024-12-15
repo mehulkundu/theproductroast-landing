@@ -1,0 +1,43 @@
+---
+import type { Stat } from "@/types";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  stats: Stat[];
+}
+
+const { title, subtitle, description, stats } = Astro.props;
+---
+
+<section class='py-16'>
+  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
+    {
+      (title || subtitle || description) && (
+        <div class='mx-auto max-w-2xl text-center'>
+          {title && <p class='text-2xl font-cursive'>{title}</p>}
+          {subtitle && (
+            <h2 class='font-bold font-serif tracking-tight'>{subtitle}</h2>
+          )}
+          {description && (
+            <p class='mt-6 leading-8 text-muted-foreground'>{description}</p>
+          )}
+        </div>
+      )
+    }
+    <dl
+      class='mt-16 grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3'>
+      {
+        stats.map((stat) => (
+          <div class='mx-auto flex max-w-xs flex-col gap-y-4'>
+            <dt class='text-muted-foreground'>{stat.label}</dt>
+            <dd class='order-first text-3xl font-semibold tracking-tight font-serif sm:text-5xl'>
+              {stat.value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

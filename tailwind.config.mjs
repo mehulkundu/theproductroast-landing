@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
-        serif: ['Fraunces', ...defaultTheme.fontFamily.mono],
+        sans: ['Manrope Variable', ...defaultTheme.fontFamily.sans],
+        serif: ['Fraunces Variable', ...defaultTheme.fontFamily.serif],
+        cursive: ['Caveat Variable', 'cursive'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -91,7 +92,29 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': 'hsl(var(--foreground))',
+            '--tw-prose-headings': 'hsl(var(--foreground))',
+            '--tw-prose-lead': theme('colors.pink[700]'),
+            '--tw-prose-links': 'hsl(var(--info-foreground))',
+            '--tw-prose-bold': theme('colors.pink[900]'),
+            '--tw-prose-counters': 'hsl(var(--accent-foreground))',
+            '--tw-prose-bullets':'hsl(var(--accent-foreground))',
+            '--tw-prose-hr': theme('colors.pink[300]'),
+            '--tw-prose-quotes': 'hsl(var(--muted-foreground))',
+            '--tw-prose-quote-borders': theme('colors.pink[300]'),
+            '--tw-prose-captions': 'hsl(var(--muted-foreground))',
+            '--tw-prose-code': theme('colors.pink[900]'),
+            '--tw-prose-pre-code': theme('colors.pink[100]'),
+            '--tw-prose-pre-bg': theme('colors.pink[900]'),
+            '--tw-prose-th-borders': theme('colors.pink[300]'),
+            '--tw-prose-td-borders': theme('colors.pink[200]'),
+          },
+        },
+      }),
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 };

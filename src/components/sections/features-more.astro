@@ -1,0 +1,57 @@
+---
+import type { Feature } from "@/types";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  features: Feature[];
+  className?: string;
+}
+
+const {
+  title = "Deploy faster",
+  subtitle = "Everything you need to deploy your app",
+  description = "Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at.",
+  features,
+  className,
+} = Astro.props;
+---
+
+<section class={`py-16 ${className}`}>
+  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
+    <div class='mx-auto max-w-2xl text-center'>
+      <p class='text-2xl font-cursive'>{title}</p>
+      <h2 class='font-bold font-serif tracking-tight'>
+        {subtitle}
+      </h2>
+      <p class='mt-6 leading-8 text-muted-foreground'>
+        {description}
+      </p>
+    </div>
+    <div class='mx-auto mt-16 max-w-5xl sm:mt-20'>
+      <dl class='grid grid-cols-1 gap-8 sm:grid-cols-2'>
+        {
+          features.map((feature) => (
+            <div class='relative p-1 border bg-card rounded-lg hover:shadow-md'>
+              <div class='bg-card rounded-md border p-6 h-full shadow-sm'>
+                <dt class='flex gap-x-4'>
+                  <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-secondary'>
+                    <feature.icon
+                      className='h-6 w-6 text-secondary-foreground'
+                      aria-hidden='true'
+                    />
+                  </div>
+                  <h5 class='font-semibold font-serif'>{feature.name}</h5>
+                </dt>
+                <dd class='mt-4 text-lg text-muted-foreground'>
+                  {feature.description}
+                </dd>
+              </div>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

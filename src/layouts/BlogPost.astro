@@ -1,0 +1,95 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/formatted-date.astro";
+import Layout from "./Layout.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+const proseStyles = {
+  base: "mx-auto prose lg:prose-lg",
+  headings: "prose-headings:font-serif",
+  p: "",
+  a: 'prose-a:after:content-["_↗_"]',
+  blockquote:
+    "prose-blockquote:border-l-2 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:py-2 prose-blockquote:font-serif prose-blockquote:bg-secondary/50 prose-blockquote:font-normal",
+  figure: "prose-figure:my-8",
+  figcaption: "prose-figcaption:text-sm prose-figcaption:text-muted-foreground",
+  strong: "prose-strong:font-semibold prose-strong:text-foreground",
+  em: "prose-em:italic",
+  kbd: "prose-kbd:bg-muted prose-kbd:rounded prose-kbd:px-2 prose-kbd:text-muted-foreground prose-kbd:font-mono",
+  code: "prose-code:text-muted-foreground prose-code:rounded prose-code:px-1",
+  pre: "prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded",
+  ol: "prose-counters:text-muted-foreground",
+  ul: "prose-bullets:text-muted",
+  li: "prose-li:my-2 prose-li:text-foreground",
+  table: "prose-table:border-collapse prose-table:w-full",
+  thead: "prose-thead:bg-muted",
+  tr: "prose-tr:border-b prose-tr:border-border",
+  th: "prose-th:p-2 prose-th:text-left prose-th:font-semibold",
+  td: "prose-td:p-2",
+  img: "prose-img:rounded-lg prose-img:bg-muted/50 prose-img:border prose-img:border-border prose-img:my-8",
+  video:
+    "prose-video:my-8 prose-video:rounded-lg prose-video:bg-muted/50 prose-video:border prose-video:border-border",
+  hr: "prose-hr:my-8 prose-hr:border-border",
+  mark: "prose-mark:bg-warning",
+};
+---
+
+<Layout title={title} description={description}>
+  <main class='max-w-[1000px] mx-auto'>
+    <article class='mx-4 md:mx-12 xl:mx-24'>
+      <div class='hero-image'>
+        {
+          heroImage && (
+            <img width={1020} height={510} src={heroImage} alt={title} />
+          )
+        }
+      </div>
+      <div
+        class={`custom-prose
+          ${proseStyles.base}
+          ${proseStyles.headings}
+          ${proseStyles.p}
+          ${proseStyles.a}
+          ${proseStyles.blockquote}
+          ${proseStyles.figure}
+          ${proseStyles.figcaption}
+          ${proseStyles.strong}
+          ${proseStyles.em}
+          ${proseStyles.kbd}
+          ${proseStyles.code}
+          ${proseStyles.pre}
+          ${proseStyles.ol}
+          ${proseStyles.ul}
+          ${proseStyles.li}
+          ${proseStyles.table}
+          ${proseStyles.thead}
+          ${proseStyles.tr}
+          ${proseStyles.th}
+          ${proseStyles.td}
+          ${proseStyles.img}
+          ${proseStyles.video}
+          ${proseStyles.hr}
+          ${proseStyles.mark}
+        `}>
+        <div>
+          <p>
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <>
+                  Last updated on <FormattedDate date={updatedDate} />
+                </>
+              )
+            }
+          </p>
+          <h1>{title}</h1>
+          <hr />
+        </div>
+        <slot />
+      </div>
+    </article>
+  </main>
+</Layout>
