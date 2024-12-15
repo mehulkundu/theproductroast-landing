@@ -1,5 +1,6 @@
 ---
 import type { Step } from "@/types";
+import DoubleBorderCard from "@/components/double-border-card.astro";
 
 interface Props {
   title?: string;
@@ -17,7 +18,7 @@ const {
 ---
 
 <section class='py-16'>
-  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
+  <div class='mx-auto max-w-7xl px-4 sm:px-8'>
     <div class='mx-auto max-w-2xl text-center'>
       <p class='text-2xl font-cursive'>{title}</p>
       <h2 class='font-bold font-serif tracking-tight'>
@@ -32,15 +33,13 @@ const {
       <div class='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
         {
           steps.map((step) => (
-            <div class='relative p-1 border bg-card rounded-lg shadow-sm hover:shadow-md'>
-              <div class='bg-card rounded-md border p-6 h-full shadow-sm'>
-                <div class='flex items-center gap-x-4'>
-                  <step.icon className='h-8 w-8' />
-                  <h5 class='font-semibold font-serif'>{step.name}</h5>
-                </div>
-                <p class='mt-4 text-muted-foreground'>{step.description}</p>
+            <DoubleBorderCard>
+              <div class='flex items-center gap-x-4'>
+                <step.icon className='h-8 w-8' />
+                <h5 class='font-semibold font-serif'>{step.name}</h5>
               </div>
-            </div>
+              <p class='mt-4 text-muted-foreground'>{step.description}</p>
+            </DoubleBorderCard>
           ))
         }
       </div>

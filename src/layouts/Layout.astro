@@ -11,7 +11,8 @@ const { title, description } = Astro.props;
   <head>
     <BaseHead title={title} description={description} />
   </head>
-  <body class='min-h-screen bg-background antialiased'>
+  <body
+    class='min-h-screen bg-background antialiased bg-[radial-gradient(hsl(var(--accent))_1px,transparent_1px)] [background-size:24px_24px]'>
     <Navbar />
     <slot />
     <Footer />

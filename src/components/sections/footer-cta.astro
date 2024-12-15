@@ -1,6 +1,7 @@
 ---
 import { Button } from "@/components/ui/button";
 import { Rocket } from "@phosphor-icons/react";
+import DoubleBorderCard from "@/components/double-border-card.astro";
 
 interface Props {
   title?: string;
@@ -22,24 +23,22 @@ const Icon = buttonIcon;
 ---
 
 <section class={`py-16 ${className}`}>
-  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
-    <div class='bg-card container mx-auto max-w-[1200px] border rounded-lg p-1'>
-      <div class='bg-card text-center border rounded-md p-10 shadow-sm'>
-        <h2 class='font-bold font-serif tracking-tight'>
-          {title}
-        </h2>
-        <p class='mt-6 leading-8 text-muted-foreground'>
-          {description}
-        </p>
-        <div class='mt-10 flex items-center justify-center gap-x-6'>
-          <Button size='lg' className='group'>
-            {buttonText}
-            <Icon
-              className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform'
-            />
-          </Button>
-        </div>
+  <div class='mx-auto max-w-7xl px-4 sm:px-8'>
+    <DoubleBorderCard extraClass='text-center'>
+      <h2 class='font-bold font-serif tracking-tight'>
+        {title}
+      </h2>
+      <p class='mt-6 leading-8 text-muted-foreground'>
+        {description}
+      </p>
+      <div class='mt-10 flex items-center justify-center gap-x-6'>
+        <Button size='lg' className='group'>
+          {buttonText}
+          <Icon
+            className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform'
+          />
+        </Button>
       </div>
-    </div>
+    </DoubleBorderCard>
   </div>
 </section>

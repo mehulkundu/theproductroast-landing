@@ -1,0 +1,15 @@
+---
+interface Props {
+  parentClass?: string;
+  extraClass?: string;
+}
+
+const { parentClass, extraClass } = Astro.props;
+---
+
+<div
+  class=`p-1 border bg-card rounded-lg shadow-sm hover:shadow-md ${parentClass}`>
+  <div class=`bg-card rounded-md border p-6 h-full shadow-sm ${extraClass}`>
+    <slot />
+  </div>
+</div>

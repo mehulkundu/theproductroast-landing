@@ -1,5 +1,6 @@
 ---
 import type { Feature } from "@/types";
+import DoubleBorderCard from "@/components/double-border-card.astro";
 
 interface Props {
   title?: string;
@@ -17,7 +18,7 @@ const {
 ---
 
 <section class='py-16'>
-  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
+  <div class='mx-auto max-w-7xl px-4 sm:px-8'>
     <div class='mx-auto max-w-2xl text-center'>
       <p class='text-2xl font-cursive'>{title}</p>
       <h2 class='font-bold font-serif tracking-tight'>
@@ -32,11 +33,10 @@ const {
         {
           features.map((feature) => (
             <div class='flex gap-4'>
-              <div class='p-1 border bg-card rounded-lg shadow-sm hover:shadow-md'>
-                <div class='aspect-video h-32 bg-card rounded-md border p-6 shadow-sm'>
-                  <feature.icon className='h-8 w-8' />
-                </div>
-              </div>
+              <DoubleBorderCard extraClass='aspect-video h-32'>
+                <feature.icon className='h-8 w-8' />
+              </DoubleBorderCard>
+
               <div class='flex flex-col'>
                 <h5 class='font-semibold font-serif'>{feature.name}</h5>
                 <p class='mt-4 text-muted-foreground'>{feature.description}</p>
