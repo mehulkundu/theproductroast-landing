@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@phosphor-icons/react";
 import type { Testimonial } from "@/types";
+import { Avatar, AvatarImage } from "../ui/avatar";
 
 interface Props {
   title: string;
@@ -28,28 +29,60 @@ const {
 
 <section class='relative px-6 lg:px-8 py-24 overflow-hidden'>
   <div class='mx-auto max-w-7xl'>
-    <div class='text-center'>
-      <h1 class='font-bold font-serif tracking-tight'>
-        {title}
-      </h1>
-      <p
-        class='flex flex-wrap gap-2 mt-6 text-lg md:text-2xl leading-8 text-muted-foreground max-w-2xl mx-auto align-middle items-center'>
-        {description}
-      </p>
-      <div class='mt-10 flex items-center justify-center gap-x-6'>
-        <Button size='lg' className='group'>
-          {primaryCTA.text}
-          <ArrowRight
-            className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform'
-          />
-        </Button>
-        <Button variant='outline' size='lg'>{secondaryCTA.text}</Button>
+    <div>
+      <div class='text-center'>
+        <h1 class='font-bold font-serif tracking-tight'>
+          Social proofs made easy
+        </h1>
+        <p
+          class='flex flex-wrap gap-2 mt-6 text-lg md:text-2xl leading-8 text-muted-foreground max-w-2xl mx-auto align-middle items-center'>
+          Stweet — the easiest way for indiehackers and small teams to gather
+          social proof, build trust, and display testimonials that drive
+          results, all in one place.
+        </p>
+        <div class='mt-10 flex items-center justify-center gap-x-6'>
+          <Button size='lg' className='group'>
+            Get started
+            <ArrowRight
+              className='ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform'
+            />
+          </Button>
+          <Button variant='outline' size='lg'>Learn more</Button>
+        </div>
+      </div>
+    </div>
+    <div class='mt-10 flex items-center justify-center gap-x-4'>
+      <div class='flex -space-x-[0.525rem]'>
+        <img
+          class='w-12 h-12 rounded-full ring-2 ring-background object-cover'
+          src='https://avatars.githubusercontent.com/u/62414848?v=4'
+          alt='Avatar 01'
+        />
+        <img
+          class='w-12 h-12 rounded-full ring-2 ring-background object-cover'
+          src='https://avatars.githubusercontent.com/u/62414848?v=4'
+          alt='Avatar 02'
+        />
+        <img
+          class='w-12 h-12 rounded-full ring-2 ring-background object-cover'
+          src='https://avatars.githubusercontent.com/u/62414848?v=4'
+          alt='Avatar 03'
+        />
+        <img
+          class='w-12 h-12 rounded-full ring-2 ring-background object-cover'
+          src='https://avatars.githubusercontent.com/u/62414848?v=4'
+          alt='Avatar 04'
+        />
+      </div>
+      <div>
+        <div>⭐⭐⭐⭐⭐</div>
+        <div class='text-muted-foreground'>loved by 20,000+ customers</div>
       </div>
     </div>
   </div>
   {
     testimonials.length > 0 && (
-      <div class='flex gap-4 mt-20'>
+      <div class='flex gap-4 mt-20 items-center justify-center'>
         {testimonials.map((item) => (
           <div class='p-1 bg-card border rounded-lg w-80 hover:shadow-md'>
             <div class='flex flex-row bg-card gap-4 p-4 border h-full rounded-sm shadow-sm'>

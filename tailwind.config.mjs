@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope Variable', ...defaultTheme.fontFamily.sans],
+        sans: ['Karla Variable', ...defaultTheme.fontFamily.sans],
         serif: ['Fraunces Variable', ...defaultTheme.fontFamily.serif],
         cursive: ['Caveat Variable', 'cursive'],
       },

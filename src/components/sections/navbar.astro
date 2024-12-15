@@ -1,0 +1,41 @@
+---
+import { NavMenu } from "./nav-menu";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Picture } from "astro:assets";
+import { Button } from "@/components/ui/button";
+---
+
+<header
+  class='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+  <div class='container h-14 mx-auto px-4 sm:px-8 py-auto'>
+    <div class='max-w-7xl mx-auto'>
+      <div class='flex items-center justify-between py-2'>
+        <div class='md:hidden'>
+          <NavMenu.Mobile client:load />
+        </div>
+        <div class='flex items-center'>
+          <a href='/' class='flex items-center space-x-2'>
+            <Picture
+              formats={["avif", "webp"]}
+              fallbackFormat='png'
+              width='32'
+              height='32'
+              src='/favicon.svg'
+              alt='Nephophile Studio Logo'
+            />
+            <span class='font-bold text-xl sm:text-2xl font-serif'>stweet</span>
+          </a>
+        </div>
+        <div class='hidden md:block'>
+          <NavMenu client:load />
+        </div>
+        <div class='flex items-center gap-2 justify-end'>
+          <ThemeToggle client:load />
+          <Button variant='secondary' size='sm' className='md:block hidden'
+            >Get started</Button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

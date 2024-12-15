@@ -9,7 +9,6 @@ import {
   Shield,
   Rocket,
 } from "@phosphor-icons/react";
-import { Picture } from "astro:assets";
 import Hero from "@/components/sections/hero.astro";
 import Stats from "@/components/sections/stats.astro";
 import Footer from "@/components/sections/footer.astro";
@@ -60,8 +59,18 @@ const stats = [
 const testimonials = [
   {
     name: "John Doe",
-    quote: "Great product!",
-    avatar: "/path/to/avatar.jpg",
+    quote: "I really like the idea of Stweet",
+    avatar: "https://avatars.githubusercontent.com/u/62414848?v=4",
+  },
+  {
+    name: "John Doe",
+    quote: "I really like the idea of Stweet",
+    avatar: "https://avatars.githubusercontent.com/u/62414848?v=4",
+  },
+  {
+    name: "John Doe",
+    quote: "I really like the idea of Stweet",
+    avatar: "https://avatars.githubusercontent.com/u/62414848?v=4",
   },
 ];
 
@@ -120,8 +129,5 @@ const steps = [
       buttonText='Get Started'
       buttonIcon={ArrowRight}
     />
-
-    <!-- Footer -->
-    <Footer />
   </main>
 </Layout>
