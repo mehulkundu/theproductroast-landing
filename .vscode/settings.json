@@ -1,4 +1,6 @@
 {
     "frontMatter.content.publicFolder": "public",
-    "frontMatter.git.enabled": true
+    "frontMatter.git.enabled": true,
+    "[markdown]": {
+    }
 }
