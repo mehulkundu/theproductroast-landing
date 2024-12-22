@@ -41,6 +41,11 @@
           "title": "fmContentType",
           "name": "fmContentType",
           "type": "string"
+        },
+        {
+          "title": "public",
+          "name": "published",
+          "type": "boolean"
         }
       ]
     }
