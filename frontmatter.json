@@ -18,33 +18,28 @@
       "clearEmpty": true,
       "fields": [
         {
-          "title": "title",
+          "title": "Title",
           "name": "title",
           "type": "string"
         },
         {
-          "title": "description",
+          "title": "Description",
           "name": "description",
           "type": "string"
         },
         {
-          "title": "pubDate",
+          "title": "Published on",
           "name": "pubDate",
           "type": "datetime"
         },
         {
-          "title": "heroImage",
+          "title": "Thumbnail",
           "name": "heroImage",
           "type": "image"
         },
         {
-          "title": "fmContentType",
-          "name": "fmContentType",
-          "type": "string"
-        },
-        {
-          "title": "public",
-          "name": "published",
+          "title": "Live",
+          "name": "public",
           "type": "boolean"
         }
       ]
