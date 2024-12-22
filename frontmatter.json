@@ -13,14 +13,15 @@
     {
       "name": "default",
       "pageBundle": false,
-      "previewPath": "blog",
+      "previewPath": "'blog'",
       "filePrefix": null,
       "clearEmpty": true,
       "fields": [
         {
           "title": "Title",
           "name": "title",
-          "type": "string"
+          "type": "string",
+          "single": true
         },
         {
           "title": "Description",
@@ -28,19 +29,17 @@
           "type": "string"
         },
         {
-          "title": "Published on",
+          "title": "Publishing date",
           "name": "pubDate",
-          "type": "datetime"
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
         },
         {
-          "title": "Thumbnail",
+          "title": "Content preview",
           "name": "heroImage",
-          "type": "image"
-        },
-        {
-          "title": "Live",
-          "name": "public",
-          "type": "boolean"
+          "type": "image",
+          "isPreviewImage": true
         }
       ]
     }
