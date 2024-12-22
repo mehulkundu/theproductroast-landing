@@ -9,7 +9,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 const proseStyles = {
   base: "mx-auto prose lg:prose-lg",
-  headings: "prose-headings:font-serif",
+  headings: "prose-headings:font-serif prose-heading:leading-6",
   p: "",
   a: 'prose-a:after:content-["_↗_"]',
   blockquote:
@@ -38,58 +38,65 @@ const proseStyles = {
 ---
 
 <Layout title={title} description={description}>
-  <main class='max-w-[1000px] mx-auto'>
-    <article class='mx-4 md:mx-12 xl:mx-24'>
-      <div class='hero-image'>
+  <main class='min-h-screen'>
+    <section class='py-16'>
+      <article class='mx-auto max-w-7xl px-4 sm:px-8'>
         {
           heroImage && (
-            <img width={1020} height={510} src={heroImage} alt={title} />
+            <img
+              width={1020}
+              height={510}
+              src={heroImage}
+              alt={title}
+              class='mx-auto rounded-sm'
+            />
           )
         }
-      </div>
-      <div
-        class={`custom-prose
-          ${proseStyles.base}
-          ${proseStyles.headings}
-          ${proseStyles.p}
-          ${proseStyles.a}
-          ${proseStyles.blockquote}
-          ${proseStyles.figure}
-          ${proseStyles.figcaption}
-          ${proseStyles.strong}
-          ${proseStyles.em}
-          ${proseStyles.kbd}
-          ${proseStyles.code}
-          ${proseStyles.pre}
-          ${proseStyles.ol}
-          ${proseStyles.ul}
-          ${proseStyles.li}
-          ${proseStyles.table}
-          ${proseStyles.thead}
-          ${proseStyles.tr}
-          ${proseStyles.th}
-          ${proseStyles.td}
-          ${proseStyles.img}
-          ${proseStyles.video}
-          ${proseStyles.hr}
-          ${proseStyles.mark}
-        `}>
-        <div>
-          <p>
-            <FormattedDate date={pubDate} />
-            {
-              updatedDate && (
-                <>
-                  Last updated on <FormattedDate date={updatedDate} />
-                </>
-              )
-            }
-          </p>
-          <h1>{title}</h1>
-          <hr />
+        <div
+          class={`custom-prose
+            ${proseStyles.base}
+            ${proseStyles.headings}
+            ${proseStyles.p}
+            ${proseStyles.a}
+            ${proseStyles.blockquote}
+            ${proseStyles.figure}
+            ${proseStyles.figcaption}
+            ${proseStyles.strong}
+            ${proseStyles.em}
+            ${proseStyles.kbd}
+            ${proseStyles.code}
+            ${proseStyles.pre}
+            ${proseStyles.ol}
+            ${proseStyles.ul}
+            ${proseStyles.li}
+            ${proseStyles.table}
+            ${proseStyles.thead}
+            ${proseStyles.tr}
+            ${proseStyles.th}
+            ${proseStyles.td}
+            ${proseStyles.img}
+            ${proseStyles.video}
+            ${proseStyles.hr}
+            ${proseStyles.mark}
+          `}>
+          <div>
+            <p>
+              <FormattedDate date={pubDate} />
+              {
+                updatedDate && (
+                  <>
+                    Last updated on <FormattedDate date={updatedDate} />
+                  </>
+                )
+              }
+            </p>
+            <h1>{title}</h1>
+            <big class='font-sans text-muted-foreground'>{description}</big>
+            <hr />
+          </div>
+          <slot />
         </div>
-        <slot />
-      </div>
-    </article>
+      </article>
+    </section>
   </main>
 </Layout>

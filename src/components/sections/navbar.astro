@@ -3,6 +3,8 @@ import { NavMenu } from "./nav-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Picture } from "astro:assets";
 import { Button } from "@/components/ui/button";
+
+import MainContent from "@/content/main-content.json";
 ---
 
 <header
@@ -21,9 +23,11 @@ import { Button } from "@/components/ui/button";
               width='32'
               height='32'
               src='/favicon.svg'
-              alt='Nephophile Studio Logo'
+              alt={MainContent.project.name}
             />
-            <span class='font-bold text-xl sm:text-2xl font-serif'>stweet</span>
+            <span class='font-bold text-xl sm:text-lg font-serif'
+              >{MainContent.project.name}</span
+            >
           </a>
         </div>
         <div class='hidden md:block'>

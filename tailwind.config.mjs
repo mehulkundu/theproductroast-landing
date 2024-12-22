@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         sans: ['Karla Variable', ...defaultTheme.fontFamily.sans],
         serif: ['Fraunces Variable', ...defaultTheme.fontFamily.serif],
+        mono: ['Fira Code Variable', ...defaultTheme.fontFamily.mono],
         cursive: ['Caveat Variable', 'cursive'],
       },
       borderRadius: {

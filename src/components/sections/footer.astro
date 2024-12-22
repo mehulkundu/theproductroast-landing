@@ -1,6 +1,8 @@
 ---
 import { Picture } from "astro:assets";
 
+import MainContent from "@/content/main-content.json";
+
 const footerLinks = [
   {
     name: "Products",
@@ -41,7 +43,7 @@ const footerLinks = [
 ];
 ---
 
-<footer class='bg-muted'>
+<footer class='bg-card border-t'>
   <div class='max-w-7xl mx-auto'>
     <div
       class='px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col'>
@@ -56,11 +58,13 @@ const footerLinks = [
               src='/favicon.svg'
               alt='Nephophile Studio Logo'
             />
-            <span class='font-bold text-2xl font-serif'>stweet</span>
+            <span class='font-bold text-2xl font-serif'
+              >{MainContent.project.name}</span
+            >
           </a>
         </div>
         <p class='mt-2 text-muted-foreground'>
-          Air plant banjo lyft occupy retro adaptogen indego
+          {MainContent.project.description}
         </p>
       </div>
       <div
