@@ -1,6 +1,8 @@
 ---
 title: Hello World!
-description: Lorem ipsum dolor sit amet
+description: |-
+    Building a design system can feel overwhelming, but this honest introduction breaks it down.
+    Understand why design systems matter, how to evaluate your team's needs, and the steps to lay a strong foundation for consistency and scalability.
 pubDate: 2024-12-22T11:10:05.607Z
 heroImage: /blog-placeholder-3.jpg
 public: true
