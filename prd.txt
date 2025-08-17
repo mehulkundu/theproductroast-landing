@@ -1,0 +1,729 @@
+# The Product Roast - Product Requirements Document
+
+## Executive Summary
+
+**Product Name:** The Product Roast  
+**Product Type:** Brutally Honest Product Review Platform  
+**Target Audience:** SaaS businesses, AI companies, job seekers, individual creators  
+**Core Value Proposition:** "Internet is full of fake praisers, get honest opinion on your project. No BS"
+
+### Mission Statement
+To provide cutting-edge, honest, and growth-focused critiques of digital products, portfolios, and case studies without the sugarcoating typical of mainstream review platforms.
+
+---
+
+## Product Overview
+
+### Problem Statement
+- Most product reviews are superficial or overly positive
+- Businesses struggle to get honest feedback for improvement
+- Job seekers receive generic portfolio advice
+- Growth is hindered by lack of brutal, actionable criticism
+
+### Solution
+A platform that delivers unfiltered, professional roasts designed for growth, not entertainment. Each roast focuses on actionable insights to drive real improvement.
+
+### Key Differentiators
+- **Brutal Honesty:** "Your product sucks, and here's exactly why"
+- **Growth-Focused:** Every critique includes actionable improvement steps
+- **Public Directory:** Free roasts serve as a searchable knowledge base
+- **Multiple Roast Levels:** From light impressions to deep dives
+- **Version Tracking:** Products can be re-roasted as they evolve
+
+---
+
+## Target Audience
+
+### Primary Users
+
+**Business Segment:**
+- SaaS startups (0-50 employees)
+- AI/ML companies launching new products
+- Product managers seeking honest feedback
+- Small agencies building client products
+
+**Individual Segment:**
+- Job seekers with portfolios
+- UX/UI designers with case studies
+- Developers with personal projects
+- Students preparing for interviews
+
+### User Personas
+
+**Sarah - Product Manager**
+- Age: 28-35
+- Pain: Needs honest feedback before product launch
+- Goal: Identify critical flaws before market entry
+- Budget: $200-500 for comprehensive roast
+
+**Alex - Job Seeker**
+- Age: 22-30
+- Pain: Portfolio not getting interview callbacks
+- Goal: Land dream job with improved portfolio
+- Budget: $50-150 for portfolio improvement
+
+---
+
+## Features & Requirements
+
+### Core Features
+
+#### 1. Public Roast Directory
+- **Free Roasts Library:** Searchable database of all public roasts
+- **Categories:** SaaS, AI Tools, Mobile Apps, Websites, Portfolios
+- **Filters:** Industry, roast type, date, rating severity
+- **Search:** Full-text search across all roast content
+- **Tags:** Technology stack, industry, company size
+
+#### 2. Roast Content System
+- **Blog-Style Structure:** Each product gets its own page
+- **Version Tracking:** Multiple roasts per product as it evolves
+- **Rich Media:** Screenshots, screen recordings, interactive demos
+- **Roast Ratings:** Severity scale (Light → Medium → Dark)
+- **Improvement Tracking:** Before/after comparisons for re-roasted products
+
+#### 3. YouTube Integration
+- **Video Embed:** Public roast videos embedded in roast pages
+- **Playlist Organization:** Categorized by roast type and industry
+- **Thumbnail Generation:** Auto-generate thumbnails with roast highlights
+- **SEO Optimization:** Video descriptions with key roast points
+
+#### 4. ProductHunt & Peerlist Showcase
+- **Featured Product Pages:** Dedicated pages for #1 products of the week
+- **Platform Badges:** Display official ProductHunt/Peerlist badges
+- **Achievement Timeline:** Chronological listing of featured products
+- **Cross-Platform Products:** Products featured on both platforms highlighted
+- **Social Proof:** Vote counts, comments, and community engagement metrics
+- **Direct Integration:** Links to original platform listings
+
+#### 5. Product Directory
+- **Centralized Product Database:** All products in single searchable directory
+- **Product Profiles:** Dedicated pages for each product with all roasts, deals, and achievements
+- **Cross-Referencing:** Easy navigation between roasts, deals, and featured listings
+- **Company Clustering:** Group products by company/creator
+- **Evolution Tracking:** Product journey from launch to current state
+
+#### 6. Deal Marketplace
+- **Affiliate Links:** Curated deals for roasted products
+- **Discount Codes:** Exclusive discounts for roasted products
+- **Deal Categories:** Tools, Services, Courses, Templates
+- **User Ratings:** Community feedback on deals
+- **Expiration Tracking:** Automatic deal status updates
+
+### Business Features
+
+#### Roast Types - Business
+
+**Light Roast ($199)**
+- First impression analysis (15 minutes)
+- Landing page critique
+- Initial user flow assessment
+- 3 critical improvement areas
+- 1-week turnaround
+
+**Medium Roast ($399)**
+- Deep feature analysis (45 minutes)
+- User experience evaluation
+- Competitive comparison
+- 7-10 improvement recommendations
+- Technical feasibility notes
+- 2-week turnaround
+
+**Dark Roast ($799)**
+- Comprehensive product audit (2 hours)
+- User journey mapping
+- Technical architecture review
+- Market positioning analysis
+- 15+ detailed recommendations
+- Follow-up consultation call
+- 3-week turnaround
+
+#### Roast Types - Individual
+
+**Portfolio Roast ($79)**
+- Overall portfolio assessment
+- Project presentation critique
+- Personal branding evaluation
+- 5-7 improvement suggestions
+- 1-week turnaround
+
+**Case Study Roast ($129)**
+- Single case study deep dive
+- Problem-solution fit analysis
+- Design process evaluation
+- Presentation quality assessment
+- Mock interview questions
+- 10+ specific improvements
+- 1-week turnaround
+
+### Technical Features
+
+#### Payment System
+- **DodoPayments/LemonSqueezy Integration**
+- **Product URLs:** JSON file configuration
+- **Automatic Redirect:** To YouForms after purchase
+- **Refund Handling:** Manual process through payment provider
+
+#### Content Management
+- **Frontmatter CMS:** Easy content creation and editing
+- **Turso Database:** Roast metadata and analytics
+- **Image Optimization:** Automatic image compression and formatting
+- **SEO Optimization:** Meta tags, structured data, sitemap
+
+#### Analytics & Tracking
+- **Roast Performance:** Views, engagement time, social shares
+- **Conversion Tracking:** From roast views to purchases
+- **Popular Content:** Most viewed roasts and categories
+- **User Behavior:** Heat maps and scroll tracking
+
+---
+
+## Technical Specifications
+
+### Tech Stack
+- **Frontend:** Astro (Static Site Generator) blog template with react, tailwind and shadcn components (already setup)
+- **CMS:** Frontmatter CMS
+- **Database:** Turso (SQLite-compatible)
+- **ORM:** Drizzle ORM
+- **Payments:** DodoPayments or LemonSqueezy
+- **Forms:** YouForms
+- **Hosting:** Cloudflare Pages
+- **CDN:** Cloudflare (integrated)
+
+### Database Schema (Drizzle ORM)
+
+```typescript
+// schema.ts
+import { sqliteTable, text, integer, real, boolean } from 'drizzle-orm/sqlite-core';
+import { relations } from 'drizzle-orm';
+
+// Products table - central entity
+export const products = sqliteTable('products', {
+  id: integer('id').primaryKey(),
+  slug: text('slug').unique().notNull(),
+  name: text('name').notNull(),
+  company_name: text('company_name').notNull(),
+  website_url: text('website_url'),
+  category: text('category').notNull(),
+  tags: text('tags'), // JSON array
+  description: text('description'),
+  logo_url: text('logo_url'),
+  created_at: text('created_at').default('CURRENT_TIMESTAMP'),
+  updated_at: text('updated_at').default('CURRENT_TIMESTAMP')
+});
+
+// Roasts table
+export const roasts = sqliteTable('roasts', {
+  id: integer('id').primaryKey(),
+  slug: text('slug').unique().notNull(),
+  title: text('title').notNull(),
+  product_id: integer('product_id').references(() => products.id),
+  roast_type: text('roast_type').notNull(), // light, medium, dark
+  target_audience: text('target_audience').notNull(), // business, individual
+  roast_date: text('roast_date').notNull(),
+  is_public: boolean('is_public').default(false),
+  youtube_video_id: text('youtube_video_id'),
+  featured: boolean('featured').default(false),
+  view_count: integer('view_count').default(0),
+  content: text('content'), // markdown content
+  summary: text('summary'),
+  rating_severity: integer('rating_severity'), // 1-5 scale
+  created_at: text('created_at').default('CURRENT_TIMESTAMP')
+});
+
+// Deals table
+export const deals = sqliteTable('deals', {
+  id: integer('id').primaryKey(),
+  product_id: integer('product_id').references(() => products.id),
+  deal_title: text('deal_title').notNull(),
+  affiliate_url: text('affiliate_url').notNull(),
+  discount_code: text('discount_code'),
+  discount_percentage: integer('discount_percentage'),
+  discount_amount: real('discount_amount'),
+  original_price: real('original_price'),
+  deal_price: real('deal_price'),
+  expires_at: text('expires_at'),
+  is_active: boolean('is_active').default(true),
+  deal_source: text('deal_source'), // affiliate, direct, etc.
+  created_at: text('created_at').default('CURRENT_TIMESTAMP')
+});
+
+// Featured products for ProductHunt and Peerlist
+export const featured_products = sqliteTable('featured_products', {
+  id: integer('id').primaryKey(),
+  product_id: integer('product_id').references(() => products.id),
+  platform: text('platform').notNull(), // 'producthunt' or 'peerlist'
+  featured_date: text('featured_date').notNull(),
+  rank: integer('rank').default(1), // #1, #2, etc.
+  badge_url: text('badge_url'), // platform badge image
+  platform_url: text('platform_url'), // link to platform listing
+  votes_count: integer('votes_count'),
+  comments_count: integer('comments_count'),
+  created_at: text('created_at').default('CURRENT_TIMESTAMP')
+});
+
+// Analytics table
+export const analytics = sqliteTable('analytics', {
+  id: integer('id').primaryKey(),
+  entity_type: text('entity_type').notNull(), // 'roast', 'product', 'deal'
+  entity_id: integer('entity_id').notNull(),
+  event_type: text('event_type').notNull(), // view, share, click, purchase
+  timestamp: text('timestamp').default('CURRENT_TIMESTAMP'),
+  user_agent: text('user_agent'),
+  referrer: text('referrer'),
+  ip_address: text('ip_address'),
+  session_id: text('session_id')
+});
+
+// Relations
+export const productsRelations = relations(products, ({ many }) => ({
+  roasts: many(roasts),
+  deals: many(deals),
+  featured_listings: many(featured_products)
+}));
+
+export const roastsRelations = relations(roasts, ({ one }) => ({
+  product: one(products, {
+    fields: [roasts.product_id],
+    references: [products.id]
+  })
+}));
+
+export const dealsRelations = relations(deals, ({ one }) => ({
+  product: one(products, {
+    fields: [deals.product_id],
+    references: [products.id]
+  })
+}));
+
+export const featuredProductsRelations = relations(featured_products, ({ one }) => ({
+  product: one(products, {
+    fields: [featured_products.product_id],
+    references: [products.id]
+  })
+}));
+```
+
+### File Structure
+```
+src/
+├── components/
+│   ├── RoastCard.astro
+│   ├── RoastFilter.astro
+│   ├── DealCard.astro
+│   ├── PricingCard.astro
+│   ├── ProductCard.astro
+│   ├── FeaturedBadge.astro
+│   └── YouTubeEmbed.astro
+├── layouts/
+│   ├── BaseLayout.astro
+│   ├── RoastLayout.astro
+│   ├── ProductLayout.astro
+│   └── PageLayout.astro
+├── pages/
+│   ├── index.astro
+│   ├── products/
+│   │   ├── [...slug].astro
+│   │   └── index.astro
+│   ├── roasts/
+│   │   ├── [...slug].astro
+│   │   └── index.astro
+│   ├── deals/
+│   │   └── index.astro
+│   ├── producthunt/
+│   │   └── index.astro
+│   ├── peerlist/
+│   │   └── index.astro
+│   ├── pricing.astro
+│   └── about.astro
+├── content/
+│   ├── roasts/
+│   ├── products/
+│   └── deals/
+├── db/
+│   ├── schema.ts
+│   ├── migrations/
+│   └── seed.ts
+└── utils/
+    ├── db.ts
+    ├── queries.ts
+    ├── payments.js
+    └── analytics.js
+```
+
+### Database Configuration (Drizzle ORM)
+
+```typescript
+// utils/db.ts
+import { drizzle } from 'drizzle-orm/libsql';
+import { createClient } from '@libsql/client';
+import * as schema from '../db/schema';
+
+const client = createClient({
+  url: import.meta.env.TURSO_DATABASE_URL,
+  authToken: import.meta.env.TURSO_AUTH_TOKEN,
+});
+
+export const db = drizzle(client, { schema });
+
+// utils/queries.ts
+import { db } from './db';
+import { products, roasts, deals, featured_products } from '../db/schema';
+import { eq, desc, and, sql } from 'drizzle-orm';
+
+export class ProductQueries {
+  // Get all featured products for ProductHunt
+  static async getFeaturedProductHunt() {
+    return await db
+      .select({
+        product: products,
+        featured: featured_products
+      })
+      .from(featured_products)
+      .leftJoin(products, eq(featured_products.product_id, products.id))
+      .where(eq(featured_products.platform, 'producthunt'))
+      .orderBy(desc(featured_products.featured_date));
+  }
+
+  // Get all featured products for Peerlist
+  static async getFeaturedPeerlist() {
+    return await db
+      .select({
+        product: products,
+        featured: featured_products
+      })
+      .from(featured_products)
+      .leftJoin(products, eq(featured_products.product_id, products.id))
+      .where(eq(featured_products.platform, 'peerlist'))
+      .orderBy(desc(featured_products.featured_date));
+  }
+
+  // Get product with all related data
+  static async getProductWithDetails(slug: string) {
+    const product = await db
+      .select()
+      .from(products)
+      .where(eq(products.slug, slug))
+      .limit(1);
+
+    if (!product.length) return null;
+
+    const [roastsList, dealsList, featuredList] = await Promise.all([
+      db.select().from(roasts).where(eq(roasts.product_id, product[0].id)),
+      db.select().from(deals).where(eq(deals.product_id, product[0].id)),
+      db.select().from(featured_products).where(eq(featured_products.product_id, product[0].id))
+    ]);
+
+    return {
+      product: product[0],
+      roasts: roastsList,
+      deals: dealsList,
+      featured: featuredList
+    };
+  }
+
+  // Get products with roast counts
+  static async getProductsWithRoastCounts() {
+    return await db
+      .select({
+        product: products,
+        roastCount: sql<number>`count(${roasts.id})`.as('roast_count')
+      })
+      .from(products)
+      .leftJoin(roasts, eq(products.id, roasts.product_id))
+      .groupBy(products.id)
+      .orderBy(desc(sql`count(${roasts.id})`));
+  }
+}
+
+export class RoastQueries {
+  // Get roast with product details
+  static async getRoastWithProduct(slug: string) {
+    return await db
+      .select({
+        roast: roasts,
+        product: products
+      })
+      .from(roasts)
+      .leftJoin(products, eq(roasts.product_id, products.id))
+      .where(eq(roasts.slug, slug))
+      .limit(1);
+  }
+
+  // Get public roasts with products
+  static async getPublicRoasts() {
+    return await db
+      .select({
+        roast: roasts,
+        product: products
+      })
+      .from(roasts)
+      .leftJoin(products, eq(roasts.product_id, products.id))
+      .where(eq(roasts.is_public, true))
+      .orderBy(desc(roasts.roast_date));
+  }
+}
+
+export class DealQueries {
+  // Get active deals with products
+  static async getActiveDeals() {
+    return await db
+      .select({
+        deal: deals,
+        product: products
+      })
+      .from(deals)
+      .leftJoin(products, eq(deals.product_id, products.id))
+      .where(eq(deals.is_active, true))
+      .orderBy(desc(deals.created_at));
+  }
+
+  // Get deals for specific product
+  static async getProductDeals(productId: number) {
+    return await db
+      .select()
+      .from(deals)
+      .where(and(
+        eq(deals.product_id, productId),
+        eq(deals.is_active, true)
+      ));
+  }
+}
+```
+
+---
+
+## Content Strategy
+
+### Roast Content Structure
+
+#### Standard Roast Template
+1. **Executive Summary** (2-3 sentences)
+2. **What They Got Right** (1-2 points)
+3. **Critical Issues** (3-5 major problems)
+4. **Detailed Analysis** (broken down by category)
+5. **Specific Improvements** (actionable steps)
+6. **Final Verdict** (brutal but constructive)
+
+#### Content Categories
+- **User Experience:** Navigation, flow, accessibility
+- **Visual Design:** Layout, typography, brand consistency
+- **Technical Performance:** Speed, responsiveness, functionality
+- **Content Quality:** Copy, messaging, value proposition
+- **Business Strategy:** Market fit, pricing, positioning
+
+### SEO Strategy
+- **Target Keywords:** "honest product review," "brutal product feedback," "SaaS critique"
+- **Long-tail Keywords:** "[Product name] honest review," "why [product] sucks"
+- **Platform Keywords:** "ProductHunt #1 products," "Peerlist featured products"
+- **Success Keywords:** "products that succeeded after roast," "brutal feedback success stories"
+- **Content Clusters:** Group roasts by industry and product type
+- **Internal Linking:** Connect related roasts, deals, and featured achievements
+- **Cross-Platform SEO:** Leverage ProductHunt/Peerlist authority for organic rankings
+
+---
+
+## Site Structure & Navigation
+
+### Primary Navigation
+- **Home:** Latest roasts, featured products, quick access to all sections
+- **Products:** Complete product directory with filtering and search
+- **Roasts:** All public roasts organized by category and date
+- **Deals:** Active deals and discounts for roasted products
+- **ProductHunt:** Showcase of #1 products of the week from ProductHunt
+- **Peerlist:** Showcase of #1 products of the week from Peerlist
+- **Pricing:** Service packages and pricing information
+- **About:** Mission, process, and team information
+
+### URL Structure
+```
+/                           # Homepage
+/products                   # Product directory
+/products/[slug]            # Individual product page
+/roasts                     # Public roasts directory
+/roasts/[slug]              # Individual roast page
+/deals                      # Deals marketplace
+/producthunt                # ProductHunt featured products
+/peerlist                   # Peerlist featured products
+/pricing                    # Pricing packages
+/about                      # About page
+```
+
+### Product-Centric Architecture
+- **Products** serve as the central entity
+- **Roasts** are linked to products (multiple roasts per product)
+- **Deals** are linked to products (multiple deals per product)
+- **Featured listings** are linked to products (ProductHunt/Peerlist achievements)
+- **Cross-platform achievements** easily identified and showcased
+
+### Public User Flow
+1. **Discovery:** Google search → Roast page
+2. **Engagement:** Read roast → Watch YouTube video
+3. **Exploration:** Browse similar roasts → Check deals
+4. **Conversion:** Consider purchasing roast → Contact form
+
+### Business Purchase Flow
+1. **Research:** Browse public roasts → Understand quality
+2. **Selection:** Choose roast type → View pricing
+3. **Purchase:** Select package → Payment processing
+4. **Onboarding:** YouForm submission → Product details
+5. **Delivery:** Receive roast → Review and implement
+
+### Content Creation Flow
+1. **Product Analysis:** Research and testing (2-4 hours)
+2. **Roast Writing:** Content creation (1-2 hours)
+3. **Media Creation:** Screenshots and recordings (30 minutes)
+4. **Review Process:** Quality check and editing (30 minutes)
+5. **Publishing:** CMS upload and SEO optimization (15 minutes)
+
+---
+
+## Pricing Strategy
+
+### Business Pricing
+
+| Package | Price | Features | Turnaround |
+|---------|-------|----------|------------|
+| Light Roast | $199 | First impression, 3 improvements | 1 week |
+| Medium Roast | $399 | Deep analysis, 7-10 improvements | 2 weeks |
+| Dark Roast | $799 | Comprehensive audit, consultation | 3 weeks |
+
+### Individual Pricing
+
+| Package | Price | Features | Turnaround |
+|---------|-------|----------|------------|
+| Portfolio Roast | $79 | Overall assessment, 5-7 improvements | 1 week |
+| Case Study Roast | $129 | Deep dive, mock interview prep | 1 week |
+
+### Discount Strategy
+- **Startup Discount:** 25% off for companies <1 year old
+- **Referral Program:** 20% off for successful referrals
+- **Volume Pricing:** 15% off for 3+ roasts
+- **Student Discount:** 50% off individual packages with verification
+
+---
+
+## Marketing & Positioning
+
+### Brand Voice
+- **Brutal but Professional:** No personal attacks, focus on product
+- **Growth-Oriented:** Every criticism includes improvement path
+- **Data-Driven:** Back claims with specific examples and metrics
+- **Confident:** Strong opinions backed by expertise
+
+### Key Messaging
+- **Primary:** "Internet is full of fake praisers, get honest opinion on your project. No BS"
+- **Secondary:** "Your product sucks, and here's exactly why"
+- **Value Prop:** "Get the brutal feedback your competitors won't give you"
+
+### Content Marketing
+- **Blog Posts:** "Why Your SaaS Landing Page Is Losing Customers"
+- **Social Media:** Roast highlights and improvement tips
+- **Podcast Appearances:** Growth hacking and product development shows
+- **Guest Articles:** Write for product management and startup publications
+
+### Community Building
+- **Product Hunt:** Feature public roasts as weekly products
+- **Peerlist:** Showcase portfolio transformations
+- **Twitter/X:** Daily roast snippets and improvement tips
+- **LinkedIn:** Business-focused roast insights
+
+---
+
+## Success Metrics
+
+### Business KPIs
+- **Revenue:** Monthly recurring revenue from roasts
+- **Conversion Rate:** Public roast views → Purchase conversions
+- **Customer Satisfaction:** Post-roast improvement implementation rate
+- **Retention:** Repeat customer percentage
+
+### Content KPIs
+- **Traffic:** Monthly unique visitors to roast pages
+- **Engagement:** Average time on roast pages
+- **Social Shares:** Roast content social media distribution
+- **YouTube Metrics:** Video views, engagement, subscriber growth
+- **Platform Traffic:** Visitors from ProductHunt and Peerlist showcase pages
+- **Achievement Tracking:** Products that achieve #1 status after being roasted
+
+### Quality KPIs
+- **Implementation Rate:** Customers who implement suggestions
+- **Success Stories:** Before/after improvement documentation
+- **Referral Rate:** Customers who refer others
+- **Industry Recognition:** Features in product and startup media
+
+---
+
+## Launch Strategy
+
+### Phase 1: MVP Launch (Month 1-2)
+- **Core Features:** Public roast directory, basic pricing pages
+- **Content:** 10-15 seed roasts across categories
+- **Focus:** Validate concept and gather initial feedback
+
+### Phase 2: Product Hunt Launch (Month 3)
+- **Features:** Complete pricing tiers, payment integration, ProductHunt showcase page
+- **Content:** 25+ high-quality roasts, first YouTube videos, seed ProductHunt achievements
+- **Pre-Launch:** Populate ProductHunt page with previously successful products
+- **Goal:** #1 Product of the Week, media attention, establish credibility through featured products
+
+### Phase 3: Scale & Optimize (Month 4-6)
+- **Features:** Advanced filters, deal marketplace
+- **Content:** 50+ roasts, regular YouTube schedule
+- **Focus:** SEO optimization, customer acquisition
+
+### Phase 4: Community Building (Month 7-12)
+- **Features:** User accounts, roast requests, ratings
+- **Content:** 100+ roasts, industry partnerships
+- **Goal:** Establish as go-to platform for honest product feedback
+
+---
+
+## Risk Assessment
+
+### Business Risks
+- **Negative Backlash:** Products being too harsh → Mitigation: Focus on constructive criticism
+- **Legal Issues:** Defamation claims → Mitigation: Fact-based analysis, professional language
+- **Competition:** Established review sites → Mitigation: Unique positioning and quality
+
+### Technical Risks
+- **Scalability:** Traffic spikes → Mitigation: CDN and caching strategy
+- **Content Management:** Manual roast creation → Mitigation: Streamlined workflow and templates
+- **Payment Processing:** Transaction failures → Mitigation: Multiple payment provider options
+
+### Market Risks
+- **Demand Validation:** Limited market need → Mitigation: Start with free content to gauge interest
+- **Pricing Sensitivity:** Prices too high → Mitigation: Flexible pricing and discount options
+- **Seasonal Fluctuations:** Business purchasing patterns → Mitigation: Target individual market during slow periods
+
+---
+
+## Future Roadmap
+
+### Year 1 Goals
+- 100+ published roasts
+- $10K+ monthly revenue
+- 50K+ monthly website visitors
+- Product Hunt #1 Product of the Week
+
+### Year 2 Expansion
+- **Roast Academy:** Educational content and courses
+- **Enterprise Packages:** Large company comprehensive audits
+- **Community Platform:** User-generated roast discussions
+- **API Access:** Third-party integrations for roast data
+
+### Year 3 Vision
+- **International Expansion:** Non-English product roasts
+- **Industry Specialization:** Dedicated verticals (FinTech, HealthTech)
+- **Roast Network:** Partner with other honest reviewers
+- **Product Development:** Tools for implementing roast recommendations
+
+---
+
+## Conclusion
+
+The Product Roast addresses a clear market gap for honest, actionable product feedback. By combining brutal honesty with growth-focused insights, the platform can become the go-to resource for businesses and individuals seeking genuine improvement opportunities.
+
+The technical implementation with Astro, Frontmatter CMS, and Turso provides a scalable foundation, while the content-first approach ensures immediate value delivery to users.
+
+Success will depend on maintaining high-quality roast content, building a strong brand around honest feedback, and continuously demonstrating the value of brutal but constructive criticism in driving product and career growth.

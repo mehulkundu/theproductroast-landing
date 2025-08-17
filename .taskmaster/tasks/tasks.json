@@ -1,0 +1,142 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 11,
+        "title": "Setup Database Infrastructure with Drizzle ORM and Turso",
+        "description": "Configure Turso database, implement Drizzle ORM schema, and establish database connection utilities for the product roast platform",
+        "details": "Install and configure Drizzle ORM with Turso (SQLite-compatible) database. Create schema.ts with tables for products, roasts, deals, featured_products, and analytics. Implement database utilities in utils/db.ts with connection setup and query classes (ProductQueries, RoastQueries, DealQueries). Set up environment variables for TURSO_DATABASE_URL and TURSO_AUTH_TOKEN. Create migration system and seed data functionality.",
+        "testStrategy": "Test database connection, verify schema creation, validate CRUD operations for each table, test relationships between entities, ensure environment variables are properly configured",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement Content Collections for Roasts and Products",
+        "description": "Extend Astro content collections to support roasts and products with proper TypeScript schemas and frontmatter validation",
+        "details": "Extend src/content.config.ts to include 'roasts' and 'products' collections alongside the existing blog collection. Define Zod schemas for roast frontmatter (title, product_id, roast_type, target_audience, roast_date, is_public, youtube_video_id, rating_severity) and product frontmatter (name, company_name, website_url, category, tags, description, logo_url). Create content directories in src/content/roasts/ and src/content/products/. Implement loader configurations for markdown and MDX files.",
+        "testStrategy": "Validate frontmatter schemas with test content, ensure proper TypeScript types are generated, test content loading and parsing, verify collection queries work correctly",
+        "priority": "high",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Build Core Component Library for Product Roasts",
+        "description": "Create reusable Astro and React components for displaying roasts, products, deals, and featured content using existing shadcn/ui foundation",
+        "details": "Build components: RoastCard.astro (roast preview with rating, type, date), ProductCard.astro (product info with logo, category, roast count), DealCard.astro (deal display with pricing, affiliate links), FeaturedBadge.astro (ProductHunt/Peerlist badges), YouTubeEmbed.astro (video integration), RoastFilter.astro (filtering UI). Follow existing component patterns using Tailwind CSS and shadcn/ui components. Ensure responsive design and accessibility.",
+        "testStrategy": "Test component rendering with various data inputs, verify responsive behavior across devices, validate accessibility standards, test interactive elements and state management",
+        "priority": "medium",
+        "dependencies": [
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Create Dynamic Page Routes and Layouts",
+        "description": "Implement dynamic routing structure for products, roasts, deals, and featured content pages with proper layouts and SEO optimization",
+        "details": "Create page routes: products/[...slug].astro, products/index.astro, roasts/[...slug].astro, roasts/index.astro, deals/index.astro, producthunt/index.astro, peerlist/index.astro. Implement layouts: RoastLayout.astro, ProductLayout.astro extending existing Layout.astro. Add proper meta tags, structured data, and OpenGraph tags for SEO. Implement breadcrumbs and navigation. Use database queries to populate pages with dynamic content.",
+        "testStrategy": "Test dynamic route generation, verify SEO meta tags are correctly populated, validate page layouts across different content types, test navigation and breadcrumbs functionality",
+        "priority": "medium",
+        "dependencies": [
+          13
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement Payment Integration with DodoPayments/LemonSqueezy",
+        "description": "Set up payment processing system for roast services with automatic redirect to YouForms after successful purchase",
+        "details": "Integrate payment providers (DodoPayments and LemonSqueezy as fallback). Create pricing configuration in JSON format with product URLs. Implement payment flow: pricing page → payment provider → YouForms redirect. Set up webhook handling for payment confirmations. Create pricing components for Light Roast ($199), Medium Roast ($399), Dark Roast ($799), Portfolio Roast ($79), Case Study Roast ($129). Implement discount code system and refund handling.",
+        "testStrategy": "Test payment flow end-to-end, verify webhook handling, validate redirect functionality to YouForms, test discount codes application, ensure secure payment processing",
+        "priority": "high",
+        "dependencies": [
+          14
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Build Public Roast Directory with Search and Filtering",
+        "description": "Create comprehensive roast directory with advanced search, filtering, and categorization features for public roasts",
+        "details": "Implement roasts/index.astro with grid layout of public roasts. Add search functionality with full-text search across roast content. Create filter system by category (SaaS, AI Tools, Mobile Apps, Websites, Portfolios), roast type (light, medium, dark), rating severity, and date. Implement sorting options (newest, oldest, most popular). Add pagination for large result sets. Include view count tracking and popular roasts section.",
+        "testStrategy": "Test search functionality with various queries, verify all filters work correctly, validate pagination, test performance with large datasets, ensure proper analytics tracking",
+        "priority": "medium",
+        "dependencies": [
+          14
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "Create ProductHunt and Peerlist Showcase Pages",
+        "description": "Build dedicated showcase pages for featured #1 products from ProductHunt and Peerlist with achievement tracking and social proof display",
+        "details": "Create producthunt/index.astro and peerlist/index.astro pages showcasing #1 products of the week. Display official platform badges, vote counts, comments, and achievement timelines. Implement cross-platform product highlighting for products featured on both platforms. Add achievement timeline with chronological listing of featured products. Include direct links to original platform listings and social proof metrics. Create responsive gallery layout with product details.",
+        "testStrategy": "Verify platform badge display, test timeline functionality, validate external links to ProductHunt/Peerlist, ensure responsive design across devices, test social proof metric display",
+        "priority": "medium",
+        "dependencies": [
+          13
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "Implement Deal Marketplace with Affiliate Tracking",
+        "description": "Build deals marketplace page with affiliate link management, discount tracking, and expiration handling for roasted products",
+        "details": "Create deals/index.astro with grid layout of active deals. Implement affiliate link tracking and click analytics. Add deal categories (Tools, Services, Courses, Templates) with filtering. Create discount code display and copy functionality. Implement expiration date tracking with automatic deal status updates. Add user ratings and community feedback system for deals. Include deal source attribution and commission tracking.",
+        "testStrategy": "Test affiliate link tracking, verify discount code functionality, validate expiration date handling, test deal categorization and filtering, ensure click analytics are properly recorded",
+        "priority": "medium",
+        "dependencies": [
+          13
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 19,
+        "title": "Update Homepage and Navigation for Product Roast Platform",
+        "description": "Transform existing landing page into product roast platform homepage with proper navigation, branding, and content sections",
+        "details": "Update src/pages/index.astro to showcase platform features: latest roasts, featured products, quick access to all sections. Replace placeholder content with product roast platform messaging ('Internet is full of fake praisers, get honest opinion on your project. No BS'). Update navigation in navbar.astro to include Products, Roasts, Deals, ProductHunt, Peerlist, Pricing, About. Create compelling hero section highlighting brutal honesty value proposition. Add testimonials from successful roast recipients.",
+        "testStrategy": "Verify navigation links work correctly, test homepage content display, validate responsive design, ensure brand messaging is consistent, test call-to-action functionality",
+        "priority": "medium",
+        "dependencies": [
+          16,
+          17,
+          18
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "Implement Analytics and Performance Tracking",
+        "description": "Set up comprehensive analytics system for tracking roast views, user engagement, conversion rates, and content performance",
+        "details": "Implement analytics table functionality with event tracking for views, shares, clicks, and purchases. Create analytics utilities in utils/analytics.js for tracking user behavior, conversion rates, and content performance. Set up view count tracking for roasts and products. Implement session tracking and user journey analysis. Add heat map and scroll tracking capabilities. Create analytics dashboard components for internal metrics. Ensure GDPR compliance and privacy-first tracking.",
+        "testStrategy": "Test event tracking accuracy, verify conversion tracking works correctly, validate analytics data collection, ensure privacy compliance, test dashboard functionality and data visualization",
+        "priority": "low",
+        "dependencies": [
+          15,
+          16
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-17T11:25:01.622Z",
+      "updated": "2025-08-17T11:26:58.094Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
